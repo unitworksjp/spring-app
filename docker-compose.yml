@@ -1,0 +1,50 @@
+version: '3.9'
+services:
+  app:
+    image: openjdk:17
+    container_name: spring-app-app
+    env_file:
+      - ./db/db.env  # mysqlと同じものを指定
+    working_dir: /app
+    volumes:
+      - ./app:/app       # Spring Bootのプロジェクト
+      - ./.m2:/root/.m2  # Mavenのローカルリポジトリ
+    command: bash -c "./mvnw clean package && java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=*:8081,suspend=n -jar target/spring-app.jar"    # VSCodeでデバッグしたい場合はコレ
+    # command: bash -c "./mvnw spring-boot:run"   # VSCodeでデバッグする必要がない場合はコレ
+    # tty: true                                   # Javaの実行環境をコンソールから利用したい場合はコレ
+    ports:
+      - 8080:8080  # 通常実行
+      - 8081:8081  # デバッグ用
+    depends_on:
+      - db
+
+  db:
+    container_name: spring-app-db
+    build: ./db
+    env_file:
+      - ./db/db.env  # MySQL設定ファイル
+    volumes:
+      - ./db/initdb:/docker-entrypoint-initdb.d  # DB初期状態構築用SQL
+      - ./db/log:/var/log/mysql
+      - mysql:/var/lib/mysql  # データファイル
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: spring-app-phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db  # サービス名（db）でもコンテナ名（spring-app-db）でもどちらでも繋がるみたい
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+    ports:
+      - 8000:80
+    # 必要な理由がよくわからないので一旦コメントアウト
+    # volumes:
+    #   - ./phpmyadmin/sessions:/sessions
+    depends_on:
+      - db
+
+volumes:
+  mysql:
