@@ -2,11 +2,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "java",           // 言語を指定
-      "name": "java (Attach)",  // 任意の名前
-      "request": "attach",      // すでに起動しているプログラムにアタッチ
-      "hostName": "app",        // コンテナ名を指定
-      "port": 8081              // 接続するポートを指定
+      "type": "java",
+      "name": "Launch ServingWebContentApplication",
+      "request": "launch",
+      "mainClass": "com.example.servingwebcontent.ServingWebContentApplication",
+      "projectName": "serving-web-content-complete"
+    },
+    {
+      "type": "java",
+      "name": "java (Attach)",
+      "request": "attach",
+      "hostName": "app",
+      "port": 8081
     }
   ]
 }

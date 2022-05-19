@@ -8,9 +8,9 @@ services:
     working_dir: /app
     volumes:
       - ./app:/app       # Spring Bootのプロジェクト
-      - ./.m2:/root/.m2  # Mavenのローカルリポジトリ
-    command: bash -c "./mvnw clean package && java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=*:8081,suspend=n -jar target/spring-app.jar"    # VSCodeでデバッグしたい場合はコレ
-    # command: bash -c "./mvnw spring-boot:run"   # VSCodeでデバッグする必要がない場合はコレ
+      - m2repo:/root/.m2  # Mavenのローカルリポジトリ
+    # command: bash -c "./mvnw clean package && java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=*:8081,suspend=n -jar target/spring-app.jar"    # VSCodeでデバッグしたい場合はコレ
+    command: bash -c "./mvnw spring-boot:run"   # VSCodeでデバッグする必要がない場合はコレ
     # tty: true                                   # Javaの実行環境をコンソールから利用したい場合はコレ
     ports:
       - 8080:8080  # 通常実行
@@ -48,3 +48,4 @@ services:
 
 volumes:
   mysql:
+  m2repo:

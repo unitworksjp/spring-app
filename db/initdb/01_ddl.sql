@@ -6,9 +6,9 @@ utf8 COLLATE utf8_general_ci;
 USE spring_app_db;
 
 CREATE TABLE spring_app_db.account(
-    account_id    int PRIMARY KEY AUTO_INCREMENT,
-    email         varchar(256) NOT NULL,
-    hashed_password      varchar(60) NOT NULL,
-    user_name     varchar(256) NOT NULL,
+    account_id        int PRIMARY KEY AUTO_INCREMENT,
+    email             varchar(256) NOT NULL,
+    hashed_password   varchar(60) NOT NULL,
+    name              varchar(256) NOT NULL,
     INDEX(account_id)
 );

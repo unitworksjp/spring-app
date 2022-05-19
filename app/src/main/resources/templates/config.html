@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Test</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <p th:text="'spring-app.name=' + ${name}" />
+    <p th:text="'spring-app.description=' + ${description}" />
+    <p th:text="'spring-app.version=' + ${version}" />
+    <p th:text="'spring-app.config.user.name=' + ${user.name}" />
+    <p th:text="'spring-app.config.user.password=' + ${user.password}" />
+    <p th:text="'hoge=' + ${hoge}" />
+    <p th:text="'fuga=' + ${fuga}" />
+    <p th:text="'db=' + ${db}" />
+</body>
+</html>

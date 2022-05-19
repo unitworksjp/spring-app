@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Injection</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <p th:text="'user.account.account_id=' + ${user.account.account_id}" />
+    <p th:text="'user.account.email=' + ${user.account.email}" />
+    <p th:text="'user.account.password=' + ${user.account.password}" />
+    <p th:text="'user.account.passwordConfirm=' + ${user.account.passwordConfirm}" />
+    <p th:text="'user.account.name=' + ${user.account.name}" />
+    <p th:text="'user.profile.firstName=' + ${user.profile.firstName}" />
+    <p th:text="'user.profile.LastName=' + ${user.profile.LastName}" />
+    <p th:text="'user.profile.country=' + ${user.profile.country}" />
+    <p th:text="'user.profile.birthday=' + ${user.profile.birthday}" />
+    <p th:text="'user.profile.gender=' + ${user.profile.gender}" />
+</body>
+</html>
